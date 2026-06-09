@@ -15,14 +15,17 @@ def levenshtein(a: str, b: str) -> int:
         return len(b)
     if not b:
         return len(a)
-    previous = list(range(len(b) + 1))
+    b_len = len(b)
+    previous = list(range(b_len + 1))
     for i, char_a in enumerate(a, start=1):
         current = [i]
-        for j, char_b in enumerate(b, start=1):
-            insert = current[j - 1] + 1
-            delete = previous[j] + 1
-            substitute = previous[j - 1] + (char_a != char_b)
+        prev_idx = 1
+        for char_b in b:
+            insert = current[-1] + 1
+            delete = previous[prev_idx] + 1
+            substitute = previous[prev_idx - 1] + (char_a != char_b)
             current.append(min(insert, delete, substitute))
+            prev_idx += 1
         previous = current
     return previous[-1]
 
