@@ -28,5 +28,6 @@ jobs:
         uses: CodSpeedHQ/action@v4
         with:
           run: uv run pytest tests/test_benchmarks.py --codspeed
+          mode: simulation
           token: ${{ secrets.CODSPEED_TOKEN }}
           upload-url: ${{ secrets.CODSPEED_SAMUEL_DEV_UPLOAD_URL }}
