@@ -32,3 +32,11 @@ def ngram_counts(text: str, n: int = 2) -> dict[str, int]:
     if n < 1:
         raise ValueError("n must be >= 1")
     return dict(Counter(text[i : i + n] for i in range(len(text) - n + 1)))
+
+
+def jaccard_similarity(left: str, right: str) -> float:
+    """Measure overlap between the unique words in two strings."""
+    left_words = set(left.lower().split())
+    right_words = set(right.lower().split())
+    union = left_words | right_words
+    return len(left_words & right_words) / len(union) if union else 1.0

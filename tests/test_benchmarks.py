@@ -1,4 +1,4 @@
-from textmetrics import levenshtein, ngram_counts, word_frequencies
+from textmetrics import jaccard_similarity, levenshtein, ngram_counts, word_frequencies
 
 SAMPLE_TEXT = (
     "the quick brown fox jumps over the lazy dog "
@@ -49,3 +49,7 @@ def test_ngram_counts_long(benchmark):
 
 def test_ngram_trigrams(benchmark):
     benchmark(ngram_counts, SAMPLE_TEXT, 3)
+
+
+def test_jaccard_similarity(benchmark):
+    benchmark(jaccard_similarity, SAMPLE_TEXT, LONG_TEXT)
