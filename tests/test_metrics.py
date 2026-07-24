@@ -1,4 +1,4 @@
-from textmetrics import levenshtein, ngram_counts, word_frequencies
+from textmetrics import jaccard_similarity, levenshtein, ngram_counts, word_frequencies
 
 
 def test_word_frequencies():
@@ -17,3 +17,8 @@ def test_levenshtein():
 
 def test_ngram_counts():
     assert ngram_counts("abab") == {"ab": 2, "ba": 1}
+
+
+def test_jaccard_similarity():
+    assert jaccard_similarity("red green blue", "green blue yellow") == 0.5
+    assert jaccard_similarity("", "") == 1.0
